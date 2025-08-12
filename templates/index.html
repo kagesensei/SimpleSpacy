@@ -1,1 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cybersecurity NER Demo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🛡️ Cybersecurity NER Demo</h1>
+        <p class="subtitle">Custom Named Entity Recognition for Cybersecurity Queries using SpaCy en_core_web_lg</p>
 
+        <div class="input-section">
+            <label for="queryInput">Enter your cybersecurity query:</label>
+            <textarea id="queryInput" placeholder="Try: 'Show me all systems affected by CVE-2024-1234' or 'Configure Nmap for vulnerability scanning'"></textarea>
+
+            <button class="btn" onclick="analyzeQuery()">🔍 Analyze Query</button>
+
+            <div class="examples">
+                <div class="example-card" onclick="setExample('Show me all vulnerabilities related to SQL injection in our web applications')">
+                    <div class="example-title">🔓 Vulnerability Query</div>
+                    <div class="example-text">Show me all vulnerabilities related to SQL injection in our web applications</div>
+                </div>
+
+                <div class="example-card" onclick="setExample('What is the latest threat intelligence on APT29 Cozy Bear group?')">
+                    <div class="example-title">🕵️ Threat Intelligence</div>
+                    <div class="example-text">What is the latest threat intelligence on APT29 Cozy Bear group?</div>
+                </div>
+
+                <div class="example-card" onclick="setExample('How do I configure Nessus scanner for PCI compliance scanning?')">
+                    <div class="example-title">⚙️ Tool Configuration</div>
+                    <div class="example-text">How do I configure Nessus scanner for PCI compliance scanning?</div>
+                </div>
+
+                <div class="example-card" onclick="setExample('We have an active breach in our AWS infrastructure, need immediate response')">
+                    <div class="example-title">🚨 Incident Response</div>
+                    <div class="example-text">We have an active breach in our AWS infrastructure, need immediate response</div>
+                </div>
+
+                <div class="example-card" onclick="setExample('Patch CVE-2024-0815 on all critical systems immediately')">
+                    <div class="example-title">🛠️ Remediation</div>
+                    <div class="example-text">Patch CVE-2024-0815 on all critical systems immediately</div>
+                </div>
+
+                <div class="example-card" onclick="setExample('Generate SOC2 compliance report for our Kubernetes clusters')">
+                    <div class="example-title">📋 Compliance</div>
+                    <div class="example-text">Generate SOC2 compliance report for our Kubernetes clusters</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="loading" class="loading hidden">
+            <p>🔍 Analyzing query with SpaCy NER...</p>
+        </div>
+
+        <div id="results" class="results hidden">
+            <h3>📊 Analysis Results</h3>
+
+            <div class="analysis-section">
+                <div class="analysis-title">🎯 Query Classification</div>
+                <div id="queryType"></div>
+                <div id="sentiment"></div>
+            </div>
+
+            <div class="analysis-section">
+                <div class="analysis-title">🏷️ Custom Cybersecurity Entities</div>
+                <div id="customEntities"></div>
+            </div>
+
+            <div class="analysis-section">
+                <div class="analysis-title">📍 Standard Named Entities</div>
+                <div id="standardEntities"></div>
+            </div>
+
+            <div class="analysis-section">
+                <div class="analysis-title">🔤 Processed Tokens</div>
+                <div id="tokens"></div>
+            </div>
+
+            <div class="analysis-section">
+                <div class="analysis-title">🤖 Mock AI Agent Response</div>
+                <div id="mockResponse" class="response-box"></div>
+            </div>
+
+            <div class="analysis-section">
+                <div class="analysis-title">🧠 Routing Logic Explanation</div>
+                <div id="routingExplanation" class="explanation-box"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
